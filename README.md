@@ -50,4 +50,4 @@
 </table>
 
 ### 블로그
-<a href="https://velog.io/@min5x5/%EC%8B%A4%EC%A0%84%ED%98%95-%EB%A6%AC%EC%95%A1%ED%8A%B8-Hooks-10%EA%B0%9C">Nomad Hooks</a>
+- <a href="https://velog.io/@min5x5/%EC%8B%A4%EC%A0%84%ED%98%95-%EB%A6%AC%EC%95%A1%ED%8A%B8-Hooks-10%EA%B0%9C">실전형 리액트 Hooks 10개</a>
