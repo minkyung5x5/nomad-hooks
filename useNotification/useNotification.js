@@ -3,18 +3,20 @@ const useNotification = (title, options) => {
         return;
     }
     const fireNotif = () => {
-        if (Notification.permission !== "granted") { // permission이 부여되지 않은 경우
-            // promise를 준다.
-            Notification.requestPermission().then((permission) => {
+        if (Notification.permission !== "granted") {
+            Notification.requestPermission().then(permission => {
                 if (permission === "granted") {
                     new Notification(title, options);
-                } else return;
+                } else {
+                    return;
+                }
             });
+        } else {
+            new Notification(title, options);
         }
     };
     return fireNotif;
-
-}
+};
 
 export default useNotification;
 

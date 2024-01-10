@@ -13,7 +13,7 @@ const useConfirm = (message = "", onConfirm, onCancel) => {
         }
     };
     return confirmAction;
-}
+};
 
 export default useConfirm;
 

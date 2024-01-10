@@ -1,33 +1,34 @@
-const useFullscreen = (callback) => {
+const useFullscreen = callback => {
     const element = useRef();
-    const runCb = (isFull) => {
+    const runCb = isFull => {
         if (callback && typeof callback === "function") {
             callback(isFull);
         }
     };
     const triggerFull = () => {
         if (element.current) {
-            if (element.current.requestFullscreen) {  //chrome
+            if (element.current.requestFullscreen) {
                 element.current.requestFullscreen();
-            } else if (element.current.webkitRequestFullscreen) {   //opera
-                element.current.webkitRequestFullscreen();
-            } else if (element.current.msRequestFullscreen) {   //Microsoft
-                element.current.msRequestFullscreen();
-            } else if (element.current.mozRequestFullScreen) {   //firefox
+            } else if (element.current.mozRequestFullScreen) {
                 element.current.mozRequestFullScreen();
+            } else if (element.current.webkitRequestFullscreen) {
+                element.current.webkitRequestFullscreen();
+            } else if (element.current.msRequestFullscreen) {
+                element.current.msRequestFullscreen();
             }
             runCb(true);
         }
     };
     const exitFull = () => {
+        document.exitFullscreen();
         if (document.exitFullscreen) {
             document.exitFullscreen();
-        } else if (document.webkitRequestFullscreen) {
-            document.webkitRequestFullscreen();
-        } else if (document.msRequestFullscreen) {
-            document.msRequestFullscreen();
-        } else if (document.mozRequestFullScreen) {
-            document.mozRequestFullScreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
         }
         runCb(false);
     };

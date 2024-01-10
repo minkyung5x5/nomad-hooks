@@ -1,23 +1,12 @@
-const useBeforeLeave = (onBefore) => {
-    if (typeof onBefore !== "function") {
-        return;
-    }
-    const handle = event => {
-        const { clientY } = event;
-        if ((clientY) <= 0) {
-            onBefore();
-        }
+export const usePreventLeave = () => {
+    const listener = event => {
+        event.preventDefault();
+        event.returnValue = "";
     };
-    useEffect(() => {
-        document.addEventListener("mouseleave", handle);
-        return () => document.removeEventListener("mouseleave", handle);
-    }, []);
-}
+    const enablePrevent = () => window.addEventListener("beforeunload", listener);
+    const disablePrevent = () =>
+        window.removeEventListener("beforeunload", listener);
+    return { enablePrevent, disablePrevent };
+};
 
-export default useBeforeLeave;
-
-const App = () => {
-    const begForLife = () => console.log("plz don't leave");
-    useBeforeLeave(begForLife);
-    return;
-}
+export default usePreventLeave;
